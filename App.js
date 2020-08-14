@@ -9,28 +9,27 @@ export default class App extends React.Component {
   constructor(state){
     super(state)
     this.state = {
-      activeTab : 'home',
+      activeTab : 'web',
     }
 
     this.hendelerState = this.hendelerState.bind(this)
   }
 
-  hendelerState(){
-    console.log('hendelerState=>Webpage')
+  hendelerState(val){
+    console.log('hendelerState=>',val)
     this.setState({
-      activeTab : 'web'
+      activeTab : val
     })
   }
   
   render(){
     return (
-      <View style={styles.body}>
-        <ScrollView>
-          { ( this.state.activeTab === 'home' ? <Home action={this.hendelerState} /> : null)}
-          { ( this.state.activeTab === 'web' ? <WebPage /> : null)}
-          <StatusBar style="auto" />
-        </ScrollView>
-      </View>
+      <>
+        { ( this.state.activeTab === 'home' ? <Home action={this.hendelerState} /> : null ) }
+        { ( this.state.activeTab === 'web' ? <WebPage action={this.hendelerState} /> : null ) }
+        <StatusBar style="auto" />
+      </>
+
     );
   }
 }
